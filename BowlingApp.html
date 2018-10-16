@@ -1,55 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/javascript.js"></script>
+    <title>Bowling Demo</title>
+    <script>
+        function fillArraySumAndAvg() {
+            var framesCtrl = getRefById("frames");
+            var sumCtrl = getRefById("sum");
+            var avgCtrl = getRefById("avg");
 
+            var scores = [];
+            //build the frames array with 10 random numbers between 0-10
+            var sum = 0;
+            for (var idx = 0; idx < 10; idx++) {
+                let s = getRandomNumber();
+                scores.push(s);
+                sum += s;
+            }
+            var avg = sum / scores.length;
+            console.log(scores, sum, avg);
+
+            framesCtrl.textContent = scores.join();
+            sumCtrl.value = sum;
+            avgCtrl.value = avg;
+        }
+
+
+        //generate a random # between 0 and 10
+
+        function getRefById(id) {
+            return document.getElementById(id);
+        }
+
+        function getRandomNumber() {
+            return Math.floor(Math.random() * 11);
+        }
+
+
+    </script>
 </head>
+
 <body>
-    
-    <div>
-            <button> Fill array then sum and average  </button>
-           
-    </div> <br />
-    
-    <div>
-           
 
-        <label id="lbl">Sum:</label>
-        <input id="txt" type="text" value=""> 
-        
-    </div>
-    <div> <br />
-        <label id="lbl">Avg:</label>  
-        <input id="txt" type="text" value=""> 
-        
-        <!-- var Bowling = function(){
-            this.scoresArray = [];        
-            this.frameCounter = 1;
-          }; 
-            function isFrameEnd(){
-              return self.frameCounter % 2 === 0;
-            };  
-              return rollScore + self.scoresArray[self.scoresArray.length - 1] === 10;
-            };         
-            for (var i = 0; i< frameNumber; i ++){ 
-            };
-            return score;
-          };
-    var bowling = new Bowling();
 
-        $(document).ready(function(){
-        
-          var Roll = function(){
-            for (var i = 1; i <= 10; i ++){
-              $( i + 'score').text(bowling.cumulativeScore(i));
-            };
-         -->
-        
-        </div>
+    <h2>Frames</h2>
+    <p id='frames'>
+        The frames array goes here!
+    </p>
+    <p>Sum: <input type='text' id='sum'></p>
+    <p>Avg: <input type='text' id='avg'></p>
+    <button onclick="fillArraySumAndAvg()">Let's Bowl!</button>
+
 </body>
+
 </html>
